@@ -1,3 +1,10 @@
+""" Copy image file (e.g. ABC.JPG) to 20180605-ABC.JPG using EXIF timestamp
+    Very simple script, expects to be executed from the dir where the images are
+    and the filenames from stdin.
+    
+    Example: ls *.JPG | python ~/mywork/img-batch-renaming/foto-rename.py
+"""
+
 import sys
 import os
 from itertools import chain
@@ -51,4 +58,4 @@ def copy_using_exif_datetime(fname, keep_stat=True):
 if __name__ == '__main__':
     for fname in chain(*(l.split() for l in sys.stdin.readlines())):
         print(f'fname={fname}')
-        modify_mtime(fname)
+        copy_using_exif_datetime(fname)
